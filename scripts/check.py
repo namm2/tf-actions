@@ -22,11 +22,10 @@ for d in set(changes):
 	print("-------\n", working_dir)
 	os.chdir(working_dir)
 	
-	print('Running "terraform fmt" ...')
-	subprocess.run(['terraform', 'fmt', '-diff=true'], capture_output=True)
+	print subprocess.Popen("terraform fmt -diff=true", stdout=PIPE).stdout.read()
 	
 	print('Running "terraform init" ...') 
-	subprocess.run(['terraform', 'init'], capture_output=True)
+	print subprocess.run(['terraform', 'init'])
 	
 	print('Running "terraform validate" ...')
-	subprocess.run(['terraform', 'validate'], capture_output=True)
+	print subprocess.run(['terraform', 'validate'])
