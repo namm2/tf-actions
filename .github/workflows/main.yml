@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/master
+    - run: git fetch --no-tags --prune --depth=1 origin master
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
