@@ -24,6 +24,6 @@ for d in set(changes):
 	
 	print(subprocess.run("terraform fmt -diff=true", shell=True, text=True, capture_output=True).stdout)
 	
-	print(subprocess.run(['terraform', 'init']).stdout)
+	print(subprocess.run(['terraform', 'init'], shell=True, text=True, capture_output=True).stdout)
 	
-	print(subprocess.run(['terraform', 'validate']).stdout)
+	print(subprocess.run(['terraform', 'validate'], shell=True, text=True, capture_output=True).stdout)
