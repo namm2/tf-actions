@@ -21,9 +21,9 @@ for d in set(changes):
 	working_dir = os.path.join(repo.working_dir, d)
 	print("-------\n", working_dir)
 	os.chdir(working_dir)
-	print('Running "terraform fmt" ...')
-	subprocess.run(['terraform', 'fmt', '-diff=true'])
-	print('Running "terraform init" ...')
-	subprocess.run(['terraform', 'init'])
-	print('Running "terraform validate" ...')
-	subprocess.run(['terraform', 'validate'])
+	
+	print("'Running "terraform fmt" ...'", subprocess.run(['terraform', 'fmt', '-diff=true']))
+	
+	print("'Running "terraform init" ...'", subprocess.run(['terraform', 'init']))
+	
+	print("'Running "terraform validate" ...'", subprocess.run(['terraform', 'validate']))
