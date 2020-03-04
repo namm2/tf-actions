@@ -22,7 +22,7 @@ for d in set(changes):
 	print("-------\n", working_dir)
 	os.chdir(working_dir)
 	print('Running "terraform fmt" ...')
-	subprocess.run(['terraform_0.12', 'fmt', '-diff=true'])
+	subprocess.run(['terraform', 'fmt', '-diff=true'])
 	print('Running "terraform init" ...')
 	subprocess.run(['terraform', 'init'])
 	print('Running "terraform validate" ...')
