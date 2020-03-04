@@ -25,4 +25,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r scripts/requirements.txt
     - name: Run Python scripts
-      run: python scripts/check.py
+      run: |
+        set -x
+        python scripts/check.py
