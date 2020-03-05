@@ -1,19 +1,24 @@
 import os, subprocess
 from git import Repo
-
+"""
+Github Actions will checkout git repo to env.GITHUB_WORKSPACE directory
+Set git Repo to this dir
+"""
 repo = Repo(os.getenv('GITHUB_WORKSPACE'))
 
+# Diff the current index against refs/origin/master 
 diff = repo.index.diff('origin/master')
 
-ignore_dirs = [".github", "modules", "scripts"]
+# List of directories will not be checked by terraform
+tf_ignore_dirs = [".github", "docs", "modules", "scripts"]
 
-changes = []
+change_dirs = []
 for i in diff.iter_change_type('M'):
 	file_path = os.path.dirname(i.b_path)
-	for name in ignore_dirs:
+	for name in tf_ignore_dirs:
 		if name in file_path:
-			break
-		changes.append(file_path.strip())
+			continue
+		change_dirs.append(file_path.strip())
 
 # print(set(changes))
 # if not changes:
