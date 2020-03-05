@@ -22,7 +22,7 @@ for i in diff.iter_change_type('M'):
 
 # print(set(changes))
 # if not changes:
-for d in set(changes):	
+for d in set(change_dirs):	
 	working_dir = os.path.join(repo.working_dir, d)
 	print("-------\n", working_dir)
 	os.chdir(working_dir)
