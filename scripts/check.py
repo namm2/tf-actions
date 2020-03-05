@@ -22,14 +22,18 @@ for i in diff.iter_change_type('M'):
 	if file_path != "":
 		changed_dirs.append(file_path)
 
+tf_cmds = [
+	"terraform fmt -diff=true",
+	"terraform init",
+	"terraform validate"
+]
+
 # Run terraform in a set of directories that has files has changed
 for d in sorted(set(changed_dirs)):
 	working_dir = os.path.join(repo.working_dir, d)
-	print("---------------\n", "Working in:", working_dir)
-	os.chdir(working_dir)
-	
-	print(subprocess.run("terraform fmt -diff=true", shell=True, text=True, capture_output=True).stdout)
-	
-	print(subprocess.run("terraform init", shell=True, text=True, capture_output=True).stdout)
-	
-	print(subprocess.run("terraform validate", shell=True, text=True, capture_output=True).stdout)
+	for cmd in tf_cmds:
+		print("---------------\n", "Working in:", working_dir)
+		os.chdir(working_dir)
+		print(cmd)
+		print(subprocess.run(cmd, shell=True, text=True, capture_output=True).stdout)
+
