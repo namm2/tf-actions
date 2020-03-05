@@ -35,6 +35,6 @@ for d in sorted(set(changed_dirs)):
 	os.chdir(working_dir)
 
 	for cmd in tf_cmds:
-		print(cmd)
+		print("Run:", cmd)
 		print(subprocess.run(cmd, shell=True, text=True, capture_output=True).stdout)
 
