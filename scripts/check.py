@@ -25,7 +25,7 @@ for i in diff.iter_change_type('M'):
 # Run terraform in a set of directories that has files has changed
 for d in sorted(set(changed_dirs)):
 	working_dir = os.path.join(repo.working_dir, d)
-	print("---------------\n", "Change directory: ", working_dir)
+	print("---------------\n", "Working in:", working_dir)
 	os.chdir(working_dir)
 	
 	print(subprocess.run("terraform fmt -diff=true", shell=True, text=True, capture_output=True).stdout)
