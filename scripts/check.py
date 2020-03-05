@@ -12,19 +12,22 @@ diff = repo.index.diff('origin/master')
 # List of directories will not be checked by terraform
 tf_ignore_dirs = [".github", "docs", "modules", "scripts"]
 
-change_dirs = []
+changed_dirs = []
 for i in diff.iter_change_type('M'):
 	file_path = os.path.dirname(i.b_path)
 	for name in tf_ignore_dirs:
 		if name in file_path:
 			continue
-		change_dirs.append(file_path.strip())
+		changed_dirs.append(file_path.strip())
 
-# print(set(changes))
-# if not changes:
-for d in set(change_dirs):	
+# List of changed directories
+for d in set(change_dirs):
+	print("-------\n", d)
+
+# Run terraform in a set of directories that has files has changed
+for d in set(changed_dirs):	
 	working_dir = os.path.join(repo.working_dir, d)
-	print("-------\n", working_dir)
+	print("-------\n", "Change directory: ", working_dir)
 	os.chdir(working_dir)
 	
 	print(subprocess.run("terraform fmt -diff=true", shell=True, text=True, capture_output=True).stdout)
