@@ -21,7 +21,7 @@ for i in diff.iter_change_type('M'):
 		changed_dirs.append(file_path.strip())
 
 # List of changed directories
-for d in set(change_dirs):
+for d in set(changed_dirs):
 	print("-------\n", d)
 
 # Run terraform in a set of directories that has files has changed
