@@ -25,7 +25,8 @@ for i in diff.iter_change_type('M'):
 tf_cmds = [
 	"terraform fmt -diff=true",
 	"terraform init",
-	"terraform validate"
+	"terraform validate",
+	"terraform plan"
 ]
 
 # Run terraform in a set of directories that has files has changed
