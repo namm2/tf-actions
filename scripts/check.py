@@ -31,9 +31,10 @@ tf_cmds = [
 # Run terraform in a set of directories that has files has changed
 for d in sorted(set(changed_dirs)):
 	working_dir = os.path.join(repo.working_dir, d)
+	print("---------------\n", "Working in:", working_dir)
+	os.chdir(working_dir)
+
 	for cmd in tf_cmds:
-		print("---------------\n", "Working in:", working_dir)
-		os.chdir(working_dir)
 		print(cmd)
 		print(subprocess.run(cmd, shell=True, text=True, capture_output=True).stdout)
 
